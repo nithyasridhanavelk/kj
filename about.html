@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | KINZ - A Hidden Treasure</title>
+  <meta name="description" content="Discover the story behind KINZ — anti-tarnish gold plated and stainless steel plated jewellery made for daily wear, festive days and party nights.">
+  
+  <link rel="icon" type="image/png" href="assets/images/kinz_logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261102b">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="kinz-header" id="main-header">
+    <div class="header-inner">
+      <!-- Brand Logo (Pure Regal Emblem - Name text removed per specification) -->
+      <a href="index.php" class="brand-logo" id="header-brand-logo" aria-label="KINZ Home" data-testid="header-logo-link">
+        <img src="assets/images/kinz_logo.png" alt="KINZ Luxury Jewellery" class="brand-logo-img" data-testid="header-logo-img">
+      </a>
+
+      <!-- Navigation Menu with Traveling Underline Indicator -->
+      <nav aria-label="Main Navigation" data-testid="primary-navigation">
+        <ul class="nav-menu" id="primary-nav">
+          <li><a href="index.php" class="nav-link" data-nav="home" data-testid="nav-home">Home</a></li>
+          <li><a href="shop.php" class="nav-link" data-nav="shop" data-testid="nav-shop">Shop</a></li>
+          <li><a href="index.php#featured-collections" class="nav-link" data-nav="collections" data-testid="nav-collections">Collections</a></li>
+          <li><a href="index.php#bestsellers" class="nav-link" data-nav="bestsellers" data-testid="nav-bestsellers">Best Sellers</a></li>
+          <li><a href="index.php#new-arrivals" class="nav-link" data-nav="new-arrivals" data-testid="nav-new-arrivals">New Arrivals</a></li>
+          <li><a href="about.html" class="nav-link active" data-nav="about" data-testid="nav-about">About</a></li>
+          <li><a href="contact.html" class="nav-link" data-nav="contact" data-testid="nav-contact">Contact</a></li>
+          <li class="nav-indicator" id="nav-indicator" aria-hidden="true"></li>
+        </ul>
+      </nav>
+
+      <!-- Search Input with Autocomplete -->
+      <div class="header-search">
+        <div class="search-input-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" class="search-input" id="site-search-input" placeholder="Search for jewellery..." autocomplete="off">
+        </div>
+        <div class="search-results-dropdown" id="search-dropdown"></div>
+      </div>
+
+      <!-- Header Action Icons -->
+      <div class="header-actions">
+        <a href="account.html#wishlist" class="action-btn" title="Wishlist" aria-label="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="action-badge wishlist-badge-count" style="display:none;">0</span>
+        </a>
+
+        <button class="action-btn open-cart-drawer-btn" title="Shopping Bag" aria-label="Shopping Bag">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="action-badge cart-badge-count" style="display:none;">0</span>
+        </button>
+
+        <a href="account.html#notifications" class="action-btn notification-action-btn" title="Notifications" aria-label="Notifications"><i class="fa-regular fa-bell" aria-hidden="true"></i><span class="action-badge notification-badge-count" aria-live="polite" aria-label="Unread notifications" aria-hidden="true" style="display:none;">0</span></a>
+
+        <a href="account.html" class="action-btn" title="My Account" aria-label="My Account">
+          <i class="fa-regular fa-user"></i></a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="action-btn menu-toggle-btn" aria-label="Toggle Navigation Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- About Hero -->
+    <section class="shop-hero-banner" style="background-image: linear-gradient(rgba(11, 45, 35, 0.9), rgba(11, 45, 35, 0.9)), url('assets/images/hero_banner.jpg');">
+      <div class="shop-hero-eyebrow">OUR LEGACY & VALUES</div>
+      <h1 class="shop-hero-title">A Hidden Treasure</h1>
+      <p class="shop-hero-desc">Anti-tarnish, waterproof jewellery for every day and every celebration</p>
+    </section>
+
+    <!-- Narrative Section -->
+    <div style="max-width: 1100px; margin: 56px auto; padding: 0 24px;">
+      
+      <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; margin-bottom: 64px;">
+        <div>
+          <span style="font-family: var(--font-royal); font-size: 0.82rem; color: var(--gold-600); letter-spacing: 2px; font-weight: 700;">OUR STORY</span>
+          <h2 style="font-family: var(--font-serif); font-size: 2.3rem; color: var(--emerald-950); margin: 10px 0 16px;">Born From Passion For Everyday Style</h2>
+          <p style="color: var(--text-muted); font-size: 0.96rem; line-height: 1.8; margin-bottom: 16px;">
+            Founded with a vision to make beautiful jewellery easy to wear and easy to love, <strong>KINZ</strong> represents "A Hidden Treasure" — where every piece uncovers beauty, grace and a little everyday sparkle, inspired by traditional Indian designs and modern style.
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.96rem; line-height: 1.8;">
+            From temple-inspired necklaces to crystal-studded rings and everyday kadas, each piece comes in a gold plated or stainless steel plated finish with an anti-tarnish, waterproof protective layer, and is quality-checked before it reaches you.
+          </p>
+        </div>
+        <div>
+          <img src="assets/images/hero_banner.jpg" alt="KINZ Festive and Party Wear Jewellery" style="border-radius: var(--radius-md); box-shadow: var(--shadow-lg); border: 2px solid var(--gold-400);">
+        </div>
+      </div>
+
+      <!-- Values 3 Grid -->
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: 64px;">
+        <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 32px 24px; text-align: center; box-shadow: var(--shadow-sm);">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--emerald-50); color: var(--emerald-800); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 16px;">
+            <i class="fa-solid fa-stamp"></i>
+          </div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--emerald-950); margin-bottom: 8px;">100% Anti-Tarnish Quality</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">Every piece is made to be waterproof and sweat-resistant, with a skin-friendly finish that keeps its shine through daily wear.</p>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 32px 24px; text-align: center; box-shadow: var(--shadow-sm);">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--emerald-50); color: var(--emerald-800); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 16px;">
+            <i class="fa-regular fa-gem"></i>
+          </div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--emerald-950); margin-bottom: 8px;">Gold &amp; Steel Plated Finishes</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">Choose a rich gold plated look or a sleek stainless steel plated finish, in designs for daily wear, festive occasions and party wear.</p>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 32px 24px; text-align: center; box-shadow: var(--shadow-sm);">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--emerald-50); color: var(--emerald-800); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 16px;">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--emerald-950); margin-bottom: 8px;">Easy Exchange</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">Shop with confidence with simple return and exchange support, and doorstep delivery across India.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="kinz-footer">
+    <div class="footer-bottom-bar">
+      <div class="footer-bottom-inner">
+        <div>&copy; 2026 KINZ. All rights reserved. | <span style="color: var(--gold-400);">A Hidden Treasure.</span></div>
+        <div class="footer-policy-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  
+  
+  
+  
+<script src="assets/js/cart-actions.js?v=20261103a"></script>
+<script src="assets/js/cart-drawer.js?v=20261103a"></script>
+<script src="assets/js/kinz-ui.js?v=20261103a"></script>
+</body>
+</html>

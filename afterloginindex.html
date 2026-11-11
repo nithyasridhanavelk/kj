@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KINZ - A Hidden Treasure | Anti-Tarnish Gold &amp; Stainless Steel Plated Jewellery</title>
+  <meta name="description" content="Shop anti-tarnish, waterproof gold plated and stainless steel plated jewellery at KINZ. Stylish pieces for daily wear, festive occasions and party wear.">
+  
+  <!-- Favicon / Brand Icon -->
+  <link rel="icon" type="image/png" href="assets/images/kinz_logo.png">
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css?v=20261102b">
+</head>
+<body>
+  <!-- Navigation Header with Enlarged Logo -->
+  <header class="kinz-header" id="main-header">
+    <div class="header-inner">
+      <!-- Brand Logo (Pure Regal Emblem - Name text removed per specification) -->
+      <a href="index.php" class="brand-logo" id="header-brand-logo" aria-label="KINZ Home" data-testid="header-logo-link">
+        <img src="assets/images/kinz_logo.png" alt="KINZ Luxury Jewellery" class="brand-logo-img" data-testid="header-logo-img">
+      </a>
+
+      <!-- Navigation Menu with Sliding / Traveling Active Underline -->
+      <nav aria-label="Main Navigation" data-testid="primary-navigation">
+        <ul class="nav-menu" id="primary-nav">
+          <li><a href="index.php" class="nav-link active" data-nav="home" data-testid="nav-home">Home</a></li>
+          <li><a href="shop.php" class="nav-link" data-nav="shop" data-testid="nav-shop">Shop</a></li>
+          <li><a href="#featured-collections" class="nav-link" data-nav="collections" data-testid="nav-collections">Collections</a></li>
+          <li><a href="#bestsellers" class="nav-link" data-nav="bestsellers" data-testid="nav-bestsellers">Best Sellers</a></li>
+          <li><a href="#new-arrivals" class="nav-link" data-nav="new-arrivals" data-testid="nav-new-arrivals">New Arrivals</a></li>
+          <li><a href="about.html" class="nav-link" data-nav="about" data-testid="nav-about">About</a></li>
+          <li><a href="contact.html" class="nav-link" data-nav="contact" data-testid="nav-contact">Contact</a></li>
+          <li class="nav-indicator" id="nav-indicator" aria-hidden="true"></li>
+        </ul>
+      </nav>
+
+      <!-- Search Input with Autocomplete -->
+      <div class="header-search">
+        <div class="search-input-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" class="search-input" id="site-search-input" placeholder="Search for jewellery..." autocomplete="off">
+        </div>
+        <div class="search-results-dropdown" id="search-dropdown"></div>
+      </div>
+
+      <!-- Header Action Icons -->
+      <div class="header-actions">
+        <a href="account.html#wishlist" class="action-btn" title="Wishlist" aria-label="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="action-badge wishlist-badge-count" style="display:none;">0</span>
+        </a>
+
+        <button class="action-btn open-cart-drawer-btn" title="Shopping Bag" aria-label="Shopping Bag">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="action-badge cart-badge-count" style="display:none;">0</span>
+        </button>
+
+        <a href="account.html#notifications" class="action-btn notification-action-btn" title="Notifications" aria-label="Notifications"><i class="fa-regular fa-bell" aria-hidden="true"></i><span class="action-badge notification-badge-count" aria-live="polite" aria-label="Unread notifications" aria-hidden="true" style="display:none;">0</span></a>
+
+        <a href="account.html" class="action-btn" title="My Account" aria-label="My Account">
+          <i class="fa-regular fa-user"></i></a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="action-btn menu-toggle-btn" aria-label="Toggle Navigation Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+    <!-- Premium Full-Size Hero Carousel Section -->
+    <section class="hero-carousel-section" id="hero-carousel" aria-label="Hero Showcase Carousel">
+      <div class="hero-carousel-track">
+        
+        <!-- Slide 1: Anti-Tarnish Plated Jewellery -->
+        <div class="hero-slide active" style="background-image:url('assets/images/hero_carousel_1.jpg');">
+          <div class="hero-overlay-effects"></div>
+          <div class="hero-container">
+            <div class="hero-content">
+              <div class="hero-eyebrow">ANTI-TARNISH • WATERPROOF • DAILY WEAR</div>
+              <h1 class="hero-title">Waterproof &amp; Anti-Tarnish Plated Jewellery</h1>
+              <p class="hero-subtitle">Gold plated and stainless steel plated designs with a long-lasting anti-tarnish finish—waterproof, sweatproof and skin-friendly, made for daily wear, festive days and party nights.</p>
+              <div class="hero-cta-group">
+                <a href="shop.php" class="btn-royal-gold">Explore Collection <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="about.html" class="btn-royal-outline">Our Heritage Story</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2: Festive & Party Wear -->
+        <div class="hero-slide" style="background-image:url('assets/images/hero_carousel_2.jpg');">
+          <div class="hero-overlay-effects"></div>
+          <div class="hero-container">
+            <div class="hero-content">
+              <div class="hero-eyebrow">FESTIVE • PARTY WEAR • STATEMENT STYLES</div>
+              <h2 class="hero-title">Statement Pieces for Festive &amp; Party Nights</h2>
+              <p class="hero-subtitle">Sparkling crystal-studded rings, necklaces and earrings in rich gold plated finishes that stay bright from the first celebration to the last dance.</p>
+              <div class="hero-cta-group">
+                <a href="shop.php?category=rings" class="btn-royal-gold">Explore Rings <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="shop.php?occasion=Party" class="btn-royal-outline">Party Wear</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3: Kids Collection -->
+        <div class="hero-slide" style="background-image:url('assets/images/hero_carousel_3.jpg');">
+          <div class="hero-overlay-effects"></div>
+          <div class="hero-container">
+            <div class="hero-content">
+              <div class="hero-eyebrow">GENTLE • ANTI-TARNISH • BABY SAFE</div>
+              <h2 class="hero-title">Gentle Picks for Little Ones</h2>
+              <p class="hero-subtitle">Smooth, rounded and skin-friendly nazariya bangles, kadas and rings in anti-tarnish gold plated and stainless steel plated finishes—waterproof and easy to wear every day.</p>
+              <div class="hero-cta-group">
+                <a href="shop.php?category=kids" class="btn-royal-gold">Shop Kids Collection <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="shop.php" class="btn-royal-outline">All Jewellery</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Carousel Navigation Arrows -->
+      <button class="hero-carousel-arrow hero-carousel-prev" id="hero-prev-btn" aria-label="Previous Slide">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button class="hero-carousel-arrow hero-carousel-next" id="hero-next-btn" aria-label="Next Slide">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <!-- Carousel Dot Indicators -->
+
+      <div class="hero-carousel-dots" id="hero-dots-container">
+        <button class="hero-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+        <button class="hero-dot" data-slide="1" aria-label="Go to slide 2"></button>
+        <button class="hero-dot" data-slide="2" aria-label="Go to slide 3"></button>
+      </div>
+    </section>
+
+    <!-- 1. Category Shortcuts Section -->
+    <section class="category-section" aria-label="Category Shortcuts">
+      <div class="section-header-row">
+        <div>
+          <span style="font-family: var(--font-royal); color: var(--gold-600); font-size: 0.78rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">Browse By Design</span>
+          <h2 class="section-title">Category Shortcuts</h2>
+        </div>
+        <a href="shop.php" class="view-all-link">View All Categories <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="category-scroll-container" id="landing-category-shortcuts">
+        <a href="shop.php?category=rings" class="category-circle-card" data-category="rings">
+          <div class="category-avatar-wrapper">
+            <img src="assets/images/gold_rings.jpg" alt="Rings category" loading="lazy">
+          </div>
+          <span class="category-card-name">Rings</span>
+          <span class="category-shortcut-subtitle">Explore designs</span>
+        </a>
+
+        <a href="shop.php?category=necklaces" class="category-circle-card" data-category="necklaces">
+          <div class="category-avatar-wrapper">
+            <img src="assets/images/gold_necklaces.jpg" alt="Necklaces category" loading="lazy">
+          </div>
+          <span class="category-card-name">Necklaces</span>
+          <span class="category-shortcut-subtitle">Explore designs</span>
+        </a>
+
+        <a href="shop.php?category=earrings" class="category-circle-card" data-category="earrings">
+          <div class="category-avatar-wrapper">
+            <img src="assets/images/gold_earrings.jpg" alt="Earrings category" loading="lazy">
+          </div>
+          <span class="category-card-name">Earrings</span>
+          <span class="category-shortcut-subtitle">Explore designs</span>
+        </a>
+
+        <a href="shop.php?category=bracelets" class="category-circle-card" data-category="bracelets">
+          <div class="category-avatar-wrapper">
+            <img src="assets/images/gold_bracelets.jpg" alt="Bracelets category" loading="lazy">
+          </div>
+          <span class="category-card-name">Bracelets</span>
+          <span class="category-shortcut-subtitle">Explore designs</span>
+        </a>
+
+        <a href="shop.php?category=bangles" class="category-circle-card" data-category="bangles">
+          <div class="category-avatar-wrapper">
+            <img src="assets/images/gold_bangles.jpg" alt="Bangles category" loading="lazy">
+          </div>
+          <span class="category-card-name">Bangles</span>
+          <span class="category-shortcut-subtitle">Explore designs</span>
+        </a>
+
+        <a href="shop.php?category=chains" class="category-circle-card" data-category="chains">
+          <div class="category-avatar-wrapper">
+            <img src="assets/images/gold_chains.jpg" alt="Chains category" loading="lazy">
+          </div>
+          <span class="category-card-name">Chains</span>
+          <span class="category-shortcut-subtitle">Explore designs</span>
+        </a>
+
+        <a href="shop.php?category=anklets" class="category-circle-card" data-category="anklets">
+          <div class="category-avatar-wrapper">
+            <img src="assets/images/gold_anklets.jpg" alt="Anklets category" loading="lazy">
+          </div>
+          <span class="category-card-name">Anklets</span>
+          <span class="category-shortcut-subtitle">Explore designs</span>
+        </a>
+
+        <a href="shop.php?category=kids" class="category-circle-card" data-category="kids">
+          <div class="category-avatar-wrapper">
+            <img src="assets/images/gold_kids.jpg" alt="Kids Accessories category" loading="lazy">
+          </div>
+          <span class="category-card-name">Kids Accessories</span>
+          <span class="category-shortcut-subtitle">Explore designs</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. Featured Collections Section -->
+    <section class="collections-section" id="featured-collections" aria-label="Featured Collections">
+      <div class="section-header-row">
+        <div>
+          <span style="font-family: var(--font-royal); color: var(--gold-600); font-size: 0.78rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">Curated For You</span>
+          <h2 class="section-title">Featured Collections</h2>
+        </div>
+        <a href="shop.php" class="view-all-link">View All Collections <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="collections-grid">
+        <a href="shop.php?metal=Anti-Tarnish" class="collection-card">
+          <img src="assets/images/collection_everyday.jpg" alt="Everyday Anti-Tarnish Jewellery" class="collection-card-bg" loading="lazy">
+          <div class="collection-card-overlay"></div>
+          <div class="collection-content">
+            <span class="collection-pill-tag">Daily Wear Edit</span>
+            <h3 class="collection-card-title">Everyday Anti-Tarnish</h3>
+            <p class="collection-card-desc">Explore easy-to-style pieces for everyday looks, with refined finishes and designs made to feel at home in your daily routine.</p>
+            <span class="collection-cta-link">Explore Collection <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <a href="shop.php?occasion=Festive" class="collection-card">
+          <img src="assets/images/collection_festive.jpg" alt="Festive and Wedding Jewellery" class="collection-card-bg" loading="lazy">
+          <div class="collection-card-overlay"></div>
+          <div class="collection-content">
+            <span class="collection-pill-tag">Special Occasions</span>
+            <h3 class="collection-card-title">Festive &amp; Wedding Edit</h3>
+            <p class="collection-card-desc">Find statement necklaces and traditional-inspired designs for festive gatherings, wedding celebrations and moments worth remembering.</p>
+            <span class="collection-cta-link">Explore Collection <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <a href="shop.php?category=rings" class="collection-card">
+          <img src="assets/images/collection_rings.jpg" alt="KINZ Ring Collection" class="collection-card-bg" loading="lazy">
+          <div class="collection-card-overlay"></div>
+          <div class="collection-content">
+            <span class="collection-pill-tag">The Ring Edit</span>
+            <h3 class="collection-card-title">Rings for Every Moment</h3>
+            <p class="collection-card-desc">From subtle everyday favourites to designs that stand out, discover rings that add a personal finish to your look.</p>
+            <span class="collection-cta-link">Explore Collection <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <a href="shop.php?category=bangles" class="collection-card">
+          <img src="assets/images/collection_bangles.jpg" alt="KINZ Bangles and Kadas" class="collection-card-bg" loading="lazy">
+          <div class="collection-card-overlay"></div>
+          <div class="collection-content">
+            <span class="collection-pill-tag">Everyday Wristwear</span>
+            <h3 class="collection-card-title">Bangles &amp; Kadas</h3>
+            <p class="collection-card-desc">Discover graceful bangles and kadas that bring a polished finishing touch to everyday outfits and special occasions.</p>
+            <span class="collection-cta-link">Explore Collection <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 3. Best-Selling Products Section (With Crown Badge & Hanging Offer Tag) -->
+    <section class="bestsellers-section" id="bestsellers" aria-label="Best-Selling Products">
+      <div class="section-header-row">
+        <div>
+          <span style="font-family: var(--font-royal); color: var(--gold-600); font-size: 0.78rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">
+            <i class="fa-solid fa-crown" style="margin-right: 4px;"></i> Customer Favourites
+          </span>
+          <h2 class="section-title">Best-Selling Products</h2>
+        </div>
+        <a href="shop.php?filter=popular" class="view-all-link">View All Best Sellers <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="product-grid" id="home-bestsellers-grid">
+        <!-- Rendered via JavaScript with hanging offer tags & best seller crown badge -->
+      </div>
+    </section>
+
+    <!-- 4. Offers and Discounts Section (Festive Privilege Banner & Live Timer) -->
+    <section class="offers-discounts-section" aria-label="Offers & Discounts">
+      <div class="offers-discounts-container">
+        <div class="offer-details-col">
+          <div class="offer-badge-ribbon">
+            <i class="fa-solid fa-sparkles"></i> Limited Festive Privilege
+          </div>
+          <h2 class="offer-headline">A little extra sparkle with <span data-featured-offer-discount>our current offer</span> on your next KINZ order.</h2>
+          <p class="offer-subtext" data-featured-offer-terms>Explore the current KINZ customer offer below. Copy the active code and apply it at checkout.</p>
+          
+          <div class="offer-timer-wrapper">
+            <div class="offer-timer-label">
+              <i class="fa-regular fa-clock"></i> Privilege Ends In:
+            </div>
+            <div class="countdown-boxes-row">
+              <div class="countdown-box">
+                <span class="countdown-number" id="countdown-days">00</span>
+                <span class="countdown-unit">Days</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-number" id="countdown-hours">00</span>
+                <span class="countdown-unit">Hours</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-number" id="countdown-minutes">00</span>
+                <span class="countdown-unit">Mins</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-number" id="countdown-seconds">00</span>
+                <span class="countdown-unit">Secs</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="coupon-code-card" data-featured-coupon-card>
+            <div class="coupon-code-inner">
+              <span class="coupon-code-label">Current Active Coupon Code</span>
+              <span class="coupon-code-val" data-featured-coupon-code>Checking active offer…</span>
+              <span class="coupon-code-meta" data-featured-coupon-meta></span>
+            </div>
+            <button type="button" class="btn-copy-coupon" data-featured-coupon-copy disabled title="Loading active coupon">
+              <i class="fa-regular fa-copy"></i> Copy Code
+            </button>
+          </div>
+
+          <a href="shop.php" class="btn-royal-gold" style="display: inline-flex;">
+            Explore Jewellery <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="privilege-perks-card">
+          <h3 class="privilege-perks-title">
+            <i class="fa-solid fa-gem"></i> Complimentary Privileges
+          </h3>
+          
+          <div class="privilege-perk-item">
+            <div class="perk-icon-circle"><i class="fa-solid fa-percent"></i></div>
+            <div class="perk-info">
+              <h4>Wallet-Friendly Prices</h4>
+              <p>Fashion jewellery in gold plated and stainless steel plated finishes at easy, everyday prices.</p>
+            </div>
+          </div>
+
+          <div class="privilege-perk-item">
+            <div class="perk-icon-circle"><i class="fa-solid fa-truck-fast"></i></div>
+            <div class="perk-info">
+              <h4>Free Insured Transit</h4>
+              <p>100% full-value transit insurance across all pincodes in India.</p>
+            </div>
+          </div>
+
+          <div class="privilege-perk-item">
+            <div class="perk-icon-circle"><i class="fa-solid fa-arrow-rotate-left"></i></div>
+            <div class="perk-info">
+              <h4>Easy 7-Day Returns</h4>
+              <p>Not the perfect fit or look? Return or exchange within 7 days, hassle-free.</p>
+            </div>
+          </div>
+
+          <div class="privilege-perk-item">
+            <div class="perk-icon-circle"><i class="fa-solid fa-scale-balanced"></i></div>
+            <div class="perk-info">
+              <h4>Anti-Tarnish Shine Guarantee</h4>
+              <p>Waterproof, sweat-resistant finishes designed to hold their colour with regular wear.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. New Arrivals Section (With Realistic Hanging Offer Tag) -->
+    <section class="products-section" id="new-arrivals" aria-label="New Arrivals" data-testid="landing-new-arrivals-section">
+      <div class="section-header-row">
+        <div>
+          <span style="font-family: var(--font-royal); color: var(--gold-600); font-size: 0.78rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">Fresh From The Atelier</span>
+          <h2 class="section-title">New Arrivals</h2>
+        </div>
+        <a href="shop.php?filter=new" class="view-all-link">View All New Arrivals <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="product-grid" id="home-new-arrivals-grid">
+        <!-- Rendered via JavaScript with hanging offer tags -->
+      </div>
+    </section>
+
+    </section>
+
+    <!-- Royal Craftsmanship Highlight Banner -->
+    <section style="background: #ffffff; padding: 64px 24px; border-bottom: 1px solid var(--border-light);">
+      <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+        <div>
+          <span style="font-family: var(--font-royal); color: var(--gold-600); font-size: 0.82rem; letter-spacing: 2.5px; font-weight: 700;">THE ART OF JEWELLERY</span>
+          <h2 style="font-family: var(--font-serif); font-size: 2.4rem; color: var(--emerald-950); margin: 12px 0 16px;">Anti-Tarnish Gold Plated &amp; Stainless Steel Plated Jewellery</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 24px;">Every piece at KINZ is quality-checked before it ships. Each design pairs a rich gold plated or stainless steel plated finish with an anti-tarnish protective layer, so it stays bright through daily wear, festive celebrations and party nights.</p>
+          <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+            <div style="border-left: 3px solid var(--gold-400); padding-left: 12px;">
+              <h4 style="font-size: 1.1rem; color: var(--emerald-900); font-weight: 700;">100% Anti-Tarnish</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Waterproof &amp; Sweatproof</p>
+            </div>
+            <div style="border-left: 3px solid var(--gold-400); padding-left: 12px;">
+              <h4 style="font-size: 1.1rem; color: var(--emerald-900); font-weight: 700;">Gold &amp; Steel</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Plated Finishes</p>
+            </div>
+            <div style="border-left: 3px solid var(--gold-400); padding-left: 12px;">
+              <h4 style="font-size: 1.1rem; color: var(--emerald-900); font-weight: 700;">Shine</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Guarantee &amp; Support</p>
+            </div>
+          </div>
+        </div>
+        <div style="position: relative;">
+          <img src="assets/images/gold_earrings.jpg" alt="Gold Plated Jhumka Earrings" style="border-radius: var(--radius-md); box-shadow: var(--shadow-lg); width: 100%; border: 1px solid var(--border-gold);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Media Section (@kinz_jewellery Instagram) -->
+    <section class="social-showcase-section" aria-label="Social Media Showcase">
+      <div style="max-width: 680px; margin: 0 auto;">
+        <span style="font-family: var(--font-royal); color: var(--gold-600); font-size: 0.78rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">
+          <i class="fa-brands fa-instagram"></i> @kinz_jewellery on Instagram
+        </span>
+        <h2 class="section-title" style="margin-top: 6px;">Join The Royal Circle</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 6px;">Follow our story and share your treasured moments with #MyKINZTreasure to be spotlighted in our regal gallery.</p>
+      </div>
+
+      <div class="social-grid">
+        <a href="https://www.instagram.com/kinz_jewellery?rpxt=NG04MGl6dmNjdmUz" target="_blank" class="social-post-card" rel="noopener noreferrer">
+          <img src="assets/images/social_anklets.jpg" alt="Gold Plated Anklets on Instagram" class="social-post-img" loading="lazy">
+          <div class="social-hover-overlay">
+            <i class="fa-brands fa-instagram" style="font-size: 1.5rem;"></i>
+            <div class="social-hover-stats">
+              <span><i class="fa-solid fa-heart"></i> 2.4k</span>
+              <span><i class="fa-solid fa-comment"></i> 142</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/kinz_jewellery?rpxt=NG04MGl6dmNjdmUz" target="_blank" class="social-post-card" rel="noopener noreferrer">
+          <img src="assets/images/social_bracelets.jpg" alt="Gold Bracelet on Instagram" class="social-post-img" loading="lazy">
+          <div class="social-hover-overlay">
+            <i class="fa-brands fa-instagram" style="font-size: 1.5rem;"></i>
+            <div class="social-hover-stats">
+              <span><i class="fa-solid fa-heart"></i> 3.1k</span>
+              <span><i class="fa-solid fa-comment"></i> 198</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/kinz_jewellery?rpxt=NG04MGl6dmNjdmUz" target="_blank" class="social-post-card" rel="noopener noreferrer">
+          <img src="assets/images/social_kids.jpg" alt="Kids Kada on Instagram" class="social-post-img" loading="lazy">
+          <div class="social-hover-overlay">
+            <i class="fa-brands fa-instagram" style="font-size: 1.5rem;"></i>
+            <div class="social-hover-stats">
+              <span><i class="fa-solid fa-heart"></i> 1.9k</span>
+              <span><i class="fa-solid fa-comment"></i> 87</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/kinz_jewellery?rpxt=NG04MGl6dmNjdmUz" target="_blank" class="social-post-card" rel="noopener noreferrer">
+          <img src="assets/images/social_earrings.jpg" alt="Jhumka Earrings on Instagram" class="social-post-img" loading="lazy">
+          <div class="social-hover-overlay">
+            <i class="fa-brands fa-instagram" style="font-size: 1.5rem;"></i>
+            <div class="social-hover-stats">
+              <span><i class="fa-solid fa-heart"></i> 2.8k</span>
+              <span><i class="fa-solid fa-comment"></i> 164</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/kinz_jewellery?rpxt=NG04MGl6dmNjdmUz" target="_blank" class="social-post-card" rel="noopener noreferrer">
+          <img src="assets/images/social_rings.jpg" alt="Gold Plated Ring on Instagram" class="social-post-img" loading="lazy">
+          <div class="social-hover-overlay">
+            <i class="fa-brands fa-instagram" style="font-size: 1.5rem;"></i>
+            <div class="social-hover-stats">
+              <span><i class="fa-solid fa-heart"></i> 4.2k</span>
+              <span><i class="fa-solid fa-comment"></i> 312</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/kinz_jewellery?rpxt=NG04MGl6dmNjdmUz" target="_blank" class="social-post-card" rel="noopener noreferrer">
+          <img src="assets/images/social_necklaces.jpg" alt="Festive Necklace on Instagram" class="social-post-img" loading="lazy">
+          <div class="social-hover-overlay">
+            <i class="fa-brands fa-instagram" style="font-size: 1.5rem;"></i>
+            <div class="social-hover-stats">
+              <span><i class="fa-solid fa-heart"></i> 3.7k</span>
+              <span><i class="fa-solid fa-comment"></i> 245</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <a href="https://www.instagram.com/kinz_jewellery?rpxt=NG04MGl6dmNjdmUz" target="_blank" class="btn-insta-follow" rel="noopener noreferrer">
+        <i class="fa-brands fa-instagram"></i> Follow @kinz_jewellery on Instagram
+      </a>
+    </section>
+
+  </main>
+
+  <!-- 8. Comprehensive Luxury Footer with Policies & Contact Information -->
+  <footer class="kinz-footer">
+    
+    <!-- Top Trust Pillars & Guarantees Strip -->
+    <div class="footer-guarantee-strip">
+      <div class="guarantee-strip-inner">
+        <div class="guarantee-strip-item">
+          <i class="fa-solid fa-certificate guarantee-strip-icon"></i>
+          <div class="guarantee-strip-text">
+            <h5> 100% Anti-Tarnish</h5>
+            <p>Waterproof &amp; Hypoallergenic</p>
+          </div>
+        </div>
+
+        <div class="guarantee-strip-item">
+          <i class="fa-solid fa-gem guarantee-strip-icon"></i>
+          <div class="guarantee-strip-text">
+            <h5>Gold &amp; Steel Plated</h5>
+            <p>Rich, Lasting Finish</p>
+          </div>
+        </div>
+
+        <div class="guarantee-strip-item">
+          <i class="fa-solid fa-shield-heart guarantee-strip-icon"></i>
+          <div class="guarantee-strip-text">
+            <h5>Easy Exchange</h5>
+            <p>7-Day Return &amp; Exchange</p>
+          </div>
+        </div>
+
+        <div class="guarantee-strip-item">
+          <i class="fa-solid fa-truck-fast guarantee-strip-icon"></i>
+          <div class="guarantee-strip-text">
+            <h5>Insured Delivery</h5>
+            <p>Doorstep Safe Transit</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main 5-Column Footer Grid -->
+    <div class="footer-top-container">
+      
+      <!-- Column 1: Brand Identity & Mission -->
+      <div class="footer-brand-col">
+        <a href="index.php" class="brand-logo" style="margin-bottom: 14px;" aria-label="KINZ Home">
+          <img src="assets/images/kinz_logo.png" alt="KINZ Luxury Jewellery" class="brand-logo-img">
+        </a>
+        <p>Anti-tarnish gold plated and stainless steel plated jewellery—waterproof, skin-friendly and made for daily wear, festive and party looks.</p>
+        
+        <div class="footer-social-row">
+          <a href="https://www.instagram.com/kinz_jewellery?rpxt=NG04MGl6dmNjdmUz" target="_blank" rel="noopener noreferrer" class="social-icon-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-icon-circle" aria-label="Youtube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://wa.me/919360660773" target="_blank" rel="noopener noreferrer" class="social-icon-circle" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <!-- Column 2: Shop by Category -->
+      <div>
+        <h4 class="footer-col-title">Shop Jewellery</h4>
+        <ul class="footer-links-list">
+          <li><a href="shop.php">All Jewellery</a></li>
+          <li><a href="shop.php?category=rings">Rings &amp; Bands</a></li>
+          <li><a href="shop.php?category=necklaces">Necklaces &amp; Chokers</a></li>
+          <li><a href="shop.php?category=earrings">Jhumkas &amp; Earrings</a></li>
+          <li><a href="shop.php?category=bangles">Bangles &amp; Kadas</a></li>
+          <li><a href="shop.php?category=kids">Kids Accessories</a></li>
+          <li><a href="shop.php?metal=Anti-Tarnish">Anti-Tarnish Collection</a></li>
+          <li><a href="shop.php?occasion=Wedding">Wedding &amp; Festive Edit</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Policies & Guarantees (Explicitly Requested) -->
+      <div>
+        <h4 class="footer-col-title">Policies &amp; Trust</h4>
+        <ul class="footer-links-list">
+          <li><span class="footer-static-item"><i class="fa-solid fa-shield-check" style="color:var(--gold-400); margin-right:4px;"></i> Anti-Tarnish Quality Guarantee</span></li>
+          <li><span class="footer-static-item"><i class="fa-solid fa-gem" style="color:var(--gold-400); margin-right:4px;"></i> Plating &amp; Material Details</span></li>
+          <li><span class="footer-static-item"><i class="fa-solid fa-arrow-rotate-left" style="color:var(--gold-400); margin-right:4px;"></i> 7-Day Return &amp; Exchange Policy</span></li>
+          <li><span class="footer-static-item"><i class="fa-solid fa-handshake" style="color:var(--gold-400); margin-right:4px;"></i> Exchange &amp; Replacement</span></li>
+          <li><span class="footer-static-item"><i class="fa-solid fa-truck-fast" style="color:var(--gold-400); margin-right:4px;"></i> Insured Shipping &amp; Delivery</span></li>
+          <li><span class="footer-static-item"><i class="fa-solid fa-lock" style="color:var(--gold-400); margin-right:4px;"></i> Privacy &amp; Data Security</span></li>
+          <li><span class="footer-static-item"><i class="fa-solid fa-file-contract" style="color:var(--gold-400); margin-right:4px;"></i> Terms &amp; Conditions</span></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact Information & Concierge -->
+      <div>
+        <h4 class="footer-col-title">Client Care &amp; Contact</h4>
+
+        <div class="footer-contact-item">
+          <i class="fa-regular fa-envelope"></i>
+          <a href="mailto:Kinzjewellery0@gmail.com" style="color:inherit; text-decoration:none;">Kinzjewellery0@gmail.com</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <a href="tel:9360660773" style="color:inherit; text-decoration:none;">+91 9360660773</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-brands fa-whatsapp"></i>
+          <a href="https://wa.me/919360660773" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">WhatsApp Support</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-regular fa-clock"></i>
+          <span>10:00 AM – 8:30 PM (All 7 Days)</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Copyright Bar -->
+    <div class="footer-bottom-bar">
+      <div class="footer-bottom-inner">
+        <div>
+          &copy; 2026 KINZ Jewellery. All rights reserved. | <span style="color: var(--gold-400);">A Hidden Treasure.</span>
+        </div>
+        <div class="footer-policy-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">Shipping Policy</a>
+          <a href="#">Jewellery Care Guide</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  
+  
+  
+  
+  
+<script src="assets/js/homepage.js?v=20261103a"></script>
+<script src="assets/js/cart-actions.js?v=20261107a"></script>
+<script src="assets/js/cart-drawer.js?v=20261103a"></script>
+<script src="assets/js/kinz-ui.js?v=20261103a"></script>
+</body>
+</html>

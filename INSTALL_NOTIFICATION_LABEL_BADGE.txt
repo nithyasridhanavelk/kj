@@ -1,0 +1,15 @@
+KINZ NOTIFICATION LABEL BADGE UPDATE
+
+Purpose:
+- Move the unread notification count from the My Account user icon to a dedicated bell icon.
+- Add a red unread-count badge beside the Notifications entry in My Account navigation.
+- Keep both counts synchronized using the existing notification_count returned by account_api.php?action=header_state.
+
+Install:
+1. Back up your current customer folder.
+2. Merge the supplied customer folder into C:\xampp\htdocs\KINZ_Integrated_Phase1\customer\.
+3. Replace the included files, preserving the folder structure.
+4. Open the customer website and press Ctrl+Shift+R.
+
+No database changes are required. Existing notification records and read/delete behaviour are unchanged.
+The new bell icon links directly to account.html#notifications.

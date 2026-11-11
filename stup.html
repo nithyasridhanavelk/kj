@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Management - Student Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #eef5de 0%, #cfe0ae 32%, #9db97a 68%, #5f8052 100%);
+            --ink: #1a2312;
+            --ink-soft: #46523a;
+            --card: #fbfcf8;
+            --active-bg: rgba(255, 255, 255, 0.55);
+            --hover-bg: rgba(255, 255, 255, 0.32);
+            --border-subtle: rgba(70, 82, 58, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        /* Entire page body is fixed to viewport with sage green gradient */
+        body {
+            height: 100vh;
+            max-height: 100vh;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--ink);
+            display: flex;
+            padding: 24px 28px;
+            margin: 0;
+            overflow: hidden;
+            /* Body is fixed, no window scroll */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Main Full-Height Layout */
+        .app-layout {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
+            gap: 28px;
+            overflow: hidden;
+        }
+
+        /* ================= LEFT SIDEBAR (Fixed Shell) ================= */
+        .sidebar {
+            width: 232px;
+            min-width: 232px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 12px 0;
+            flex-shrink: 0;
+        }
+
+        /* Brand Logo */
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            margin-bottom: 36px;
+            padding-left: 14px;
+            text-decoration: none;
+        }
+
+        .brand-icon {
+            width: 26px;
+            height: 26px;
+            background: linear-gradient(145deg, #3d5a2c, #141c0e);
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(20, 28, 14, 0.3);
+            flex-shrink: 0;
+        }
+
+        .brand-name {
+            font-size: 23px;
+            font-weight: 800;
+            letter-spacing: -0.4px;
+            color: var(--ink);
+        }
+
+        /* Navigation Links */
+        .nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            list-style: none;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 17.5px;
+            font-weight: 700;
+            letter-spacing: -0.1px;
+            color: var(--ink-soft);
+            cursor: pointer;
+            transition: color 0.18s, background-color 0.18s;
+            padding: 12px 16px;
+            border-radius: 14px;
+            text-decoration: none;
+        }
+
+        .nav-item:hover {
+            color: var(--ink);
+            background-color: var(--hover-bg);
+        }
+
+        .nav-item.active {
+            color: var(--ink);
+            font-weight: 800;
+            background-color: var(--active-bg);
+            box-shadow: 0 4px 14px rgba(26, 35, 18, 0.12);
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex-shrink: 0;
+        }
+
+        /* Logout */
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 17.5px;
+            font-weight: 700;
+            color: var(--ink-soft);
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: color 0.18s, background-color 0.18s;
+        }
+
+        .logout-btn:hover {
+            color: var(--ink);
+            background-color: var(--hover-bg);
+        }
+
+        .logout-icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex-shrink: 0;
+        }
+
+        .nav-item:focus-visible,
+        .logout-btn:focus-visible {
+            outline: 2px solid var(--ink);
+            outline-offset: 2px;
+        }
+
+        /* ================= MAIN WHITE OVERVIEW CARD (Fixed Shell) ================= */
+        .overview-card {
+            flex: 1;
+            background-color: var(--card);
+            border-radius: 32px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 4px rgba(20, 35, 15, 0.08), 0 24px 48px rgba(20, 35, 15, 0.22);
+            height: 100%;
+            max-height: 100%;
+            padding: 32px 40px;
+            overflow: hidden;
+            /* Outer card stays fixed */
+            position: relative;
+        }
+
+        /* Fixed Header inside Card */
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            padding-bottom: 16px;
+            border-bottom: 1.5px solid rgba(70, 82, 58, 0.1);
+            flex-shrink: 0;
+            /* Header stays locked at the top */
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            background-color: rgba(95, 128, 82, 0.12);
+            color: #2b3e1c;
+            font-size: 12px;
+            font-weight: 800;
+            border-radius: 20px;
+            width: fit-content;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .header-title {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--ink);
+            letter-spacing: -0.6px;
+            margin-top: 3px;
+        }
+
+        .header-subtitle {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--ink-soft);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        /* Student Profile Pill */
+        .user-profile-pill {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(70, 82, 58, 0.16);
+            border-radius: 24px;
+            padding: 7px 18px;
+        }
+
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #324a24, #141c0e);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .user-meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+            line-height: 1.2;
+        }
+
+        .user-role {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--ink-soft);
+        }
+
+        .bell-badge {
+            width: 42px;
+            height: 42px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid rgba(70, 82, 58, 0.15);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .bell-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .bell-badge svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--ink);
+            fill: none;
+            stroke-width: 2.2;
+        }
+
+        /* ================= MAIN SCROLLABLE CONTENT AREA ================= */
+        .card-content-scrollable {
+            flex: 1;
+            overflow-y: auto;
+            /* Content inside the card scrolls smoothly */
+            padding-right: 8px;
+            /* Clean space for custom scrollbar */
+        }
+
+        .card-content-scrollable::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .card-content-scrollable::-webkit-scrollbar-track {
+            background: rgba(70, 82, 58, 0.05);
+            border-radius: 10px;
+        }
+
+        .card-content-scrollable::-webkit-scrollbar-thumb {
+            background: rgba(70, 82, 58, 0.25);
+            border-radius: 10px;
+        }
+
+        .card-content-scrollable::-webkit-scrollbar-thumb:hover {
+            background: rgba(70, 82, 58, 0.4);
+        }
+
+        /* 2-Column Metric Cards Grid */
+        .stats-row-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(70, 82, 58, 0.14);
+            border-radius: 22px;
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(20, 35, 15, 0.03);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(20, 35, 15, 0.07);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--ink-soft);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .trend-pill {
+            background-color: #e6f6ea;
+            color: #1f6e32;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 12.5px;
+        }
+
+        .stat-val {
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 8px 0 2px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .stat-sub {
+            font-size: 14px;
+            color: var(--ink-soft);
+            font-weight: 500;
+        }
+
+        /* Verification Banner */
+        .banner-card {
+            background: linear-gradient(90deg, #f3f7ea 0%, #e6f0d8 100%);
+            border: 1.5px solid rgba(70, 82, 58, 0.16);
+            border-radius: 20px;
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .banner-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--ink);
+            margin-bottom: 3px;
+        }
+
+        .banner-text {
+            font-size: 14px;
+            color: var(--ink-soft);
+            line-height: 1.4;
+        }
+
+        /* Controls & Titles */
+        .controls-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--ink);
+            letter-spacing: -0.4px;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--ink-soft);
+            margin-top: 2px;
+        }
+
+        .filter-pills-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-pill {
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            background-color: rgba(255, 255, 255, 0.7);
+            color: var(--ink-soft);
+            border: 1px solid rgba(70, 82, 58, 0.16);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .filter-pill:hover {
+            background-color: #ffffff;
+            color: var(--ink);
+        }
+
+        .filter-pill.active {
+            background-color: var(--ink);
+            color: #ffffff;
+            border-color: var(--ink);
+        }
+
+        .search-input {
+            padding: 10px 16px;
+            border: 1px solid rgba(70, 82, 58, 0.2);
+            border-radius: 13px;
+            font-size: 14.5px;
+            background-color: #ffffff;
+            outline: none;
+            width: 260px;
+            transition: border-color 0.15s;
+            color: var(--ink);
+        }
+
+        .search-input:focus {
+            border-color: var(--ink);
+        }
+
+        /* Action Buttons */
+        .btn-primary {
+            padding: 10px 18px;
+            background-color: var(--ink);
+            color: #ffffff;
+            font-size: 14.5px;
+            font-weight: 700;
+            border-radius: 13px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.15s, transform 0.12s;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .btn-primary:hover {
+            background-color: #2b391f;
+            transform: translateY(-1px);
+        }
+
+        .btn-gold {
+            padding: 10px 18px;
+            background-color: #f2c140;
+            color: #141a0d;
+            font-size: 14.5px;
+            font-weight: 800;
+            border-radius: 13px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.15s, transform 0.12s;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .btn-gold:hover {
+            background-color: #e2b231;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            padding: 9px 16px;
+            background-color: rgba(255, 255, 255, 0.7);
+            color: var(--ink);
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 13px;
+            border: 1px solid rgba(70, 82, 58, 0.2);
+            cursor: pointer;
+            transition: background-color 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #ffffff;
+        }
+
+        .btn-opt-in {
+            padding: 8px 18px;
+            background-color: var(--ink);
+            color: #ffffff;
+            font-size: 13.5px;
+            font-weight: 700;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+
+        .btn-opt-in:hover {
+            background-color: #2c381e;
+        }
+
+        .btn-opt-out {
+            padding: 8px 16px;
+            background-color: #f7ede8;
+            color: #9c3818;
+            font-size: 13.5px;
+            font-weight: 700;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+
+        .btn-opt-out:hover {
+            background-color: #f2ddd4;
+        }
+
+        /* Drive Cards Grid */
+        .drives-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 26px;
+        }
+
+        .drive-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(70, 82, 58, 0.16);
+            border-radius: 22px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 14px rgba(20, 35, 15, 0.03);
+            transition: border-color 0.2s, transform 0.15s, box-shadow 0.15s;
+        }
+
+        .drive-card:hover {
+            border-color: #9db97a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(20, 35, 15, 0.08);
+        }
+
+        .drive-card.not-eligible {
+            background-color: #fcfbf9;
+            opacity: 0.9;
+            border-style: dashed;
+        }
+
+        .drive-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .drive-company {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--ink);
+        }
+
+        .drive-role {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--ink-soft);
+            margin-top: 2px;
+        }
+
+        .drive-package {
+            font-size: 19px;
+            font-weight: 800;
+            color: #216d33;
+        }
+
+        .drive-desc {
+            font-size: 13.5px;
+            color: var(--ink-soft);
+            line-height: 1.45;
+            margin-bottom: 12px;
+        }
+
+        .drive-details-row {
+            display: flex;
+            gap: 14px;
+            font-size: 13px;
+            color: var(--ink-soft);
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .drive-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 14px;
+            border-top: 1px solid rgba(70, 82, 58, 0.1);
+        }
+
+        /* Tables */
+        .table-container {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+
+        .table-container th {
+            text-align: left;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--ink-soft);
+            padding-bottom: 12px;
+            border-bottom: 1.5px solid rgba(70, 82, 58, 0.12);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .table-container td {
+            padding: 14px 0;
+            vertical-align: middle;
+            border-bottom: 1px solid rgba(70, 82, 58, 0.08);
+            font-size: 14.5px;
+            color: var(--ink);
+        }
+
+        .table-container tr:last-child td {
+            border-bottom: none;
+        }
+
+        .student-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar-dot {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: rgba(95, 128, 82, 0.12);
+            border: 1px solid rgba(70, 82, 58, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--ink);
+            flex-shrink: 0;
+        }
+
+        /* Badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 11px;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .badge-applied {
+            background-color: #e8f2fc;
+            color: #1e5999;
+        }
+
+        .badge-shortlisted {
+            background-color: #e5f5e8;
+            color: #216d33;
+        }
+
+        .badge-interview {
+            background-color: #fbf1db;
+            color: #8e6815;
+        }
+
+        .badge-selected {
+            background-color: #e5f6e8;
+            color: #156d25;
+        }
+
+        .badge-rejected {
+            background-color: #fceceb;
+            color: #9c2724;
+        }
+
+        .badge-scheduled {
+            background-color: #e8effd;
+            color: #1e52a8;
+        }
+
+        .badge-eligible {
+            background-color: #edf7e7;
+            color: #2e622b;
+        }
+
+        .badge-ineligible {
+            background-color: #faeceb;
+            color: #a12b26;
+        }
+
+        .action-link {
+            font-size: 14px;
+            font-weight: 700;
+            color: #bf8d20;
+            cursor: pointer;
+            text-decoration: none;
+            margin-right: 12px;
+        }
+
+        .action-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Toast Notification */
+        .toast-box {
+            display: none;
+            position: fixed;
+            bottom: 28px;
+            right: 32px;
+            background-color: var(--ink);
+            color: #ffffff;
+            padding: 13px 20px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast-box.show {
+            display: flex;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modals */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(20, 26, 13, 0.45);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background-color: #ffffff;
+            border-radius: 28px;
+            padding: 32px 36px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 86vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.16);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1.5px solid rgba(70, 82, 58, 0.12);
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--ink);
+            letter-spacing: -0.3px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 26px;
+            cursor: pointer;
+            color: var(--ink-soft);
+            line-height: 1;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--ink-soft);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 11px 16px;
+            border: 1px solid rgba(70, 82, 58, 0.2);
+            border-radius: 12px;
+            font-size: 14.5px;
+            outline: none;
+            background-color: #ffffff;
+            color: var(--ink);
+            transition: border-color 0.15s;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--ink);
+        }
+
+        /* Views */
+        .view-section {
+            display: none;
+        }
+
+        .view-section.active-view {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 960px) {
+            body {
+                padding: 16px;
+                overflow-y: auto;
+                height: auto;
+                max-height: none;
+            }
+
+            .app-layout {
+                flex-direction: column;
+                gap: 16px;
+                height: auto;
+                max-height: none;
+            }
+
+            .sidebar {
+                width: 100%;
+                min-width: 0;
+                padding: 8px;
+                height: auto;
+            }
+
+            .drives-grid,
+            .stats-row-2col {
+                grid-template-columns: 1fr;
+            }
+
+            .overview-card {
+                padding: 24px 20px;
+                height: auto;
+                max-height: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- ================= LEFT SIDEBAR (Fixed Shell) ================= -->
+        <aside class="sidebar">
+            <div>
+                <!-- Logo -->
+                <a href="javascript:void(0)" class="brand-logo"
+                    onclick="switchStudentTab('dashboard', document.querySelectorAll('.nav-item')[0])">
+                    <div class="brand-icon"></div>
+                    <span class="brand-name">Mataverse</span>
+                </a>
+
+                <!-- Navigation Links -->
+                <ul class="nav-list">
+                    <li>
+                        <a href="javascript:void(0)" class="nav-item active"
+                            onclick="switchStudentTab('dashboard', this)">
+                            <svg class="nav-icon" viewBox="0 0 24 24">
+                                <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                                <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                                <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                                <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                            </svg>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)" class="nav-item" onclick="switchStudentTab('drives', this)">
+                            <svg class="nav-icon" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polygon points="12 6 12 12 16 14"></polygon>
+                            </svg>
+                            <span>Campus Drives</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)" class="nav-item" onclick="switchStudentTab('applications', this)">
+                            <svg class="nav-icon" viewBox="0 0 24 24">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                            <span>Completed Drives</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)" class="nav-item" onclick="switchStudentTab('profile', this)">
+                            <svg class="nav-icon" viewBox="0 0 24 24">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <span>My Profile</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)" class="nav-item" onclick="switchStudentTab('offers', this)">
+                            <svg class="nav-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                </path>
+                            </svg>
+                            <span>Offers & Policy</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Logout -->
+            <a href="Landinggg.html" class="logout-btn" onclick="return confirmLogout();">
+                <svg class="logout-icon" viewBox="0 0 24 24">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span>Log out</span>
+            </a>
+        </aside>
+
+        <!-- ================= MAIN WHITE OVERVIEW CARD (Fixed Outer Shell) ================= -->
+        <main class="overview-card">
+
+            <!-- Header Section (Fixed at Top of Card) -->
+            <header class="header-section">
+                <div class="header-left">
+                    <h1 class="header-title" id="student-title">Welcome, Aditya Kumar</h1>
+                    <p class="header-subtitle" id="student-subtitle">B.Tech Computer Science (Final Year) • CGPA: 8.92 •
+                        0 Backlogs</p>
+                </div>
+
+                <div class="header-right">
+                    <!-- Student Profile Pill -->
+                    <div class="user-profile-pill">
+                        <div class="user-avatar">AK</div>
+                        <div class="user-meta">
+                            <span class="user-name">Aditya Kumar</span>
+                            <span class="user-role">Student • Final Year</span>
+                        </div>
+                    </div>
+
+                    <button class="bell-badge"
+                        onclick="showToast('Google India Drive Round 2 interview scheduled for tomorrow 10:00 AM.')">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Scrollable Inner Content Area -->
+            <div class="card-content-scrollable">
+
+                <!-- ================= VIEW 1: STUDENT OVERVIEW DASHBOARD ================= -->
+                <section id="s-dashboard" class="view-section active-view">
+
+                    <!-- 2 Metric Cards in a Row -->
+                    <div class="stats-row-2col">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span>Eligible Campus Drives</span>
+                            </div>
+                            <div class="stat-val" id="stat-drives-avail">5 Available</div>
+                            <div class="stat-sub">3 open for opt-in • 2 already registered</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span>Verified CGPA</span>
+                            </div>
+                            <div class="stat-val">8.92</div>
+                            <div class="stat-sub">0 Active Backlogs • CSE Department</div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Completeness & Approval Banner -->
+                    <div class="banner-card">
+                        <div>
+                            <div class="banner-title">Profile Verification Status: Verified & Approved ✅</div>
+                            <div class="banner-text">Resume: <strong>Aditya_Resume_2026.pdf</strong> (Active & Sent to
+                                Recruiters) • Academic credentials verified by Staff Coordinator Dr. Ramanathan.</div>
+                        </div>
+                        <button class="btn-primary"
+                            onclick="switchStudentTab('profile', document.querySelectorAll('.nav-item')[3])">View
+                            Profile</button>
+                    </div>
+
+                    <!-- Open Drives Highlight for Your Batch -->
+                    <div class="controls-bar">
+                        <div>
+                            <h2 class="section-title">Open Recruitment Drives For You</h2>
+                            <p class="section-subtitle">Drives currently accepting student participation responses</p>
+                        </div>
+                        <button class="btn-secondary"
+                            onclick="switchStudentTab('drives', document.querySelectorAll('.nav-item')[1])">Explore All
+                            Drives</button>
+                    </div>
+
+                    <div class="drives-grid">
+                        <!-- Drive 1: Google India -->
+                        <div class="drive-card" id="card-google">
+                            <div>
+                                <div class="drive-top">
+                                    <div>
+                                        <div class="drive-company">Google India</div>
+                                        <div class="drive-role">Associate Software Engineer</div>
+                                    </div>
+                                    <div class="drive-package">28.0 LPA</div>
+                                </div>
+                                <p class="drive-desc">Full-time distributed systems, scalable search infrastructure, and
+                                    large-scale backend pipelines in Bangalore.</p>
+                                <div class="drive-details-row">
+                                    <span>📍 Bangalore</span>
+                                    <span>📅 Scheduled: Tomorrow 10:00 AM</span>
+                                    <span class="status-badge badge-eligible">Eligible</span>
+                                </div>
+                            </div>
+                            <div class="drive-footer">
+                                <span style="font-size: 13px; font-weight: 700; color: #216d33;"
+                                    id="status-google">Status: Opted In (Applied)</span>
+                                <button class="btn-opt-out" id="btn-google"
+                                    onclick="openOptOutModal('Google India')">Opt Out (Decline)</button>
+                            </div>
+                        </div>
+
+                        <!-- Drive 2: Microsoft -->
+                        <div class="drive-card" id="card-msft">
+                            <div>
+                                <div class="drive-top">
+                                    <div>
+                                        <div class="drive-company">Microsoft</div>
+                                        <div class="drive-role">Cloud Support Engineer</div>
+                                    </div>
+                                    <div class="drive-package">18.5 LPA</div>
+                                </div>
+                                <p class="drive-desc">Enterprise Azure cloud architectures, customer solution pipelines,
+                                    and modern DevOps microservices.</p>
+                                <div class="drive-details-row">
+                                    <span>📍 Hyderabad</span>
+                                    <span>📅 Scheduled: Nov 18, 2026</span>
+                                    <span class="status-badge badge-eligible">Eligible</span>
+                                </div>
+                            </div>
+                            <div class="drive-footer">
+                                <span style="font-size: 13px; font-weight: 700; color: #156d25;"
+                                    id="status-msft">Status: Offer Extended 🎉</span>
+                                <button class="btn-gold"
+                                    onclick="switchStudentTab('offers', document.querySelectorAll('.nav-item')[4])">Review
+                                    Offer</button>
+                            </div>
+                        </div>
+
+                        <!-- Drive 3: Amazon Web Services -->
+                        <div class="drive-card" id="card-aws">
+                            <div>
+                                <div class="drive-top">
+                                    <div>
+                                        <div class="drive-company">Amazon Web Services</div>
+                                        <div class="drive-role">Software Development Engineer (SDE-1)</div>
+                                    </div>
+                                    <div class="drive-package">32.0 LPA</div>
+                                </div>
+                                <p class="drive-desc">Hyperscale cloud storage, distributed compute frameworks, and
+                                    mission-critical cloud primitives in Hyderabad.</p>
+                                <div class="drive-details-row">
+                                    <span>📍 Hyderabad / Bangalore</span>
+                                    <span>📅 Deadline: Nov 10, 2026</span>
+                                    <span class="status-badge badge-eligible">Eligible</span>
+                                </div>
+                            </div>
+                            <div class="drive-footer">
+                                <span style="font-size: 13px; font-weight: 700; color: #8e6815;"
+                                    id="status-aws">Response Pending</span>
+                                <button class="btn-opt-in" id="btn-aws"
+                                    onclick="openOptInModal('Amazon Web Services', 'SDE-1', '32.0 LPA')">Opt-In
+                                    (Apply)</button>
+                            </div>
+                        </div>
+
+                        <!-- Drive 4: Cisco Systems -->
+                        <div class="drive-card" id="card-cisco">
+                            <div>
+                                <div class="drive-top">
+                                    <div>
+                                        <div class="drive-company">Cisco Systems</div>
+                                        <div class="drive-role">Software Engineer - Networks</div>
+                                    </div>
+                                    <div class="drive-package">19.2 LPA</div>
+                                </div>
+                                <p class="drive-desc">Network virtualization, modern cybersecurity protocols, routing
+                                    telemetry, and kernel-level cloud engineering.</p>
+                                <div class="drive-details-row">
+                                    <span>📍 Bangalore</span>
+                                    <span>📅 Scheduled: Nov 12, 2026</span>
+                                    <span class="status-badge badge-eligible">Eligible</span>
+                                </div>
+                            </div>
+                            <div class="drive-footer">
+                                <span style="font-size: 13px; font-weight: 700; color: #8e6815;"
+                                    id="status-cisco">Response Pending</span>
+                                <button class="btn-opt-in" id="btn-cisco"
+                                    onclick="openOptInModal('Cisco Systems', 'Software Engineer - Networks', '19.2 LPA')">Opt-In
+                                    (Apply)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- ================= VIEW 2: CAMPUS DRIVES ================= -->
+                <section id="s-drives" class="view-section">
+
+                    <div class="controls-bar">
+                        <div class="filter-pills-row">
+                            <button class="filter-pill active" onclick="filterDriveCards('all', this)">All Campus Drives
+                                (6)</button>
+                            <button class="filter-pill" onclick="filterDriveCards('eligible', this)">Eligible Only
+                                (5)</button>
+                            <button class="filter-pill" onclick="filterDriveCards('optedin', this)">Opted In
+                                (2)</button>
+                        </div>
+
+                        <input type="text" id="driveSearchInput" class="search-input"
+                            placeholder="Search company, role or location..." oninput="searchDriveCards()">
+                    </div>
+
+                    <div class="drives-grid" id="allDrivesGrid">
+
+                        <!-- Card 1: Google India -->
+                        <div class="drive-card" data-category="eligible optedin"
+                            data-search="google india associate software engineer bangalore">
+                            <div>
+                                <div class="drive-top">
+                                    <div>
+                                        <div class="drive-company">Google India</div>
+                                        <div class="drive-role">Associate Software Engineer</div>
+                                    </div>
+                                    <div class="drive-package">28.0 LPA</div>
+                                </div>
+                                <p class="drive-desc">Core product engineering, distributed systems, algorithms, and
+                                    backend services. Comprehensive benefits and mentoring.</p>
+                                <div class="drive-details-row">
+                                    <span>📍 Bangalore</span>
+                                    <span>🎓 CSE, IT &bull; CGPA &ge; 8.0</span>
+                                    <span class="status-badge badge-eligible">Eligible</span>
+                                </div>
+                            </div>
+                            <div class="drive-footer">
+                                <span style="font-size: 13px; font-weight: 700; color: #216d33;">Applied (Opted
+                                    In)</span>
+                                <div>
+                                    <button class="btn-secondary" style="font-size: 13px; padding: 7px 12px;"
+                                        onclick="viewDriveDetailsModal('Google India', 'Associate Software Engineer', '28.0 LPA', 'Bangalore', 'B.Tech CSE/IT >= 8.0 CGPA (0 Backlogs)', '3 Rounds: Coding Assessment, Systems Architecture, Engineering HR')">View
+                                        Details</button>
+                                    <button class="btn-opt-out" onclick="openOptOutModal('Google India')">Opt
+                                        Out</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Microsoft -->
+                        <div class="drive-card" data-category="eligible"
+                            data-search="microsoft cloud support engineer hyderabad">
+                            <div>
+                                <div class="drive-top">
+                                    <div>
+                                        <div class="drive-company">Microsoft</div>
+                                        <div class="drive-role">Cloud Support Engineer</div>
+                                    </div>
+                                    <div class="drive-package">18.5 LPA</div>
+                                </div>
+                                <p class="drive-desc">Azure cloud enterprise solutions, high-availability architecture
+                                    troubleshooting, and containerized deployments.</p>
+                                <div class="drive-details-row">
+                                    <span>📍 Hyderabad</span>
+                                    <span>🎓 CSE, IT, ECE &bull; CGPA &ge; 7.5</span>
+                                    <span class="status-badge badge-selected">Offer Extended</span>
+                                </div>
+                            </div>
+                            <div class="drive-footer">
+                                <span style="font-size: 13px; font-weight: 700; color: #156d25;">Offer Ready to
+                                    Review</span>
+                                <div>
+                                    <button class="btn-secondary" style="font-size: 13px; padding: 7px 12px;"
+                                        onclick="viewDriveDetailsModal('Microsoft', 'Cloud Support Engineer', '18.5 LPA', 'Hyderabad', 'CSE/ECE/IT >= 7.5 CGPA (0 Backlogs)', '3 Rounds: Coding Test, Tech Review, Managerial HR')">View
+                                        Details</button>
+                                    <button class="btn-gold"
+                                        onclick="switchStudentTab('offers', document.querySelectorAll('.nav-item')[4])">Review
+                                        Offer</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Amazon Web Services -->
+                        <div class="drive-card" data-category="eligible"
+                            data-search="amazon web services aws sde-1 hyderabad">
+                            <div>
+                                <div class="drive-top">
+                                    <div>
+                                        <div class="drive-company">Amazon Web Services</div>
+                                        <div class="drive-role">Software Development Engineer (SDE-1)</div>
+                                    </div>
+                                    <div class="drive-package">32.0 LPA</div>
+                                </div>
+                                <p class="drive-desc">Hyperscale cloud storage, distributed compute frameworks, and
+                                    mission-critical cloud primitives.</p>
+                                <div class="drive-details-row">
+                                    <span>📍 Hyderabad / Bangalore</span>
+                                    <span>🎓 All Circuit Branches &bull; CGPA &ge; 8.0</span>
+                                    <span class="status-badge badge-eligible">Eligible</span>
+                                </div>
+                            </div>
+                            <div class="drive-footer">
+                                <span style="font-size: 13px; font-weight: 700; color: #8e6815;">Deadline: Nov 10</span>
+                                <div>
+                                    <button class="btn-secondary" style="font-size: 13px; padding: 7px 12px;"
+                                        onclick="viewDriveDetailsModal('Amazon Web Services', 'SDE-1', '32.0 LPA', 'Hyderabad', 'CSE/IT/ECE >= 8.0 CGPA (0 Backlogs)', '4 Rounds: Online Assessment, Technical 1, Technical 2, Bar Raiser')">View
+                                        Details</button>
+                                    <button class="btn-opt-in"
+                                        onclick="openOptInModal('Amazon Web Services', 'SDE-1', '32.0 LPA')">Opt-In
+                                        (Apply)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Cisco Systems -->
+                        <div class="drive-card" data-category="eligible"
+                            data-search="cisco systems software engineer networks bangalore">
+                            <div>
+                                <div class="drive-top">
+                                    <div>
+                                        <div class="drive-company">Cisco Systems</div>
+                                        <div class="drive-role">Software Engineer - Networks</div>
+                                    </div>
+                                    <div class="drive-package">19.2 LPA</div>
+                                </div>
+                                <p class="drive-desc">Network routing, edge telemetry systems, Linux kernel development,
+                                    and next-generation cloud firewalls.</p>
+                                <div class="drive-details-row">
+                                    <span>📍 Bangalore</span>
+                                    <span>🎓 CSE, IT, ECE &bull; CGPA &ge; 7.8</span>
+                                    <span class="status-badge badge-eligible">Eligible</span>
+                                </div>
+                            </div>
+                            <div class="drive-footer">
+                                <span style="font-size: 13px; font-weight: 700; color: #8e6815;">Deadline: Nov 08</span>
+                                <div>
+                                    <button class="btn-secondary" style="font-size: 13px; padding: 7px 12px;"
+                                        onclick="viewDriveDetailsModal('Cisco Systems', 'Software Engineer - Networks', '19.2 LPA', 'Bangalore', 'CSE, IT, ECE >= 7.8 CGPA (0 Backlogs)', '3 Rounds: Network Domain MCQ & Code, Technical Interview, HR')">View
+                                        Details</button>
+                                    <button class="btn-opt-in"
+                                        onclick="openOptInModal('Cisco Systems', 'Software Engineer - Networks', '19.2 LPA')">Opt-In
+                                        (Apply)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 5: Zomato -->
+                        <div class="drive-card" data-category="eligible"
+                            data-search="zomato backend systems engineer gurgaon">
+                            <div>
+                                <div class="drive-top">
+                                    <div>
+                                        <div class="drive-company">Zomato</div>
+                                        <div class="drive-role">Backend Systems Engineer</div>
+                                    </div>
+                                    <div class="drive-package">15.0 LPA</div>
+                                </div>
+                                <p class="drive-desc">High-throughput microservices, dynamic routing algorithms, order
+                                    fulfillment pipelines, and real-time Kafka queues.</p>
+                                <div class="drive-details-row">
+                                    <span>📍 Gurgaon</span>
+                                    <span>🎓 All Engineering &bull; CGPA &ge; 7.0</span>
+                                    <span class="status-badge badge-eligible">Eligible</span>
+                                </div>
+                            </div>
+                            <div class="drive-footer">
+                                <span style="font-size: 13px; font-weight: 700; color: #8e6815;">Deadline: Nov 15</span>
+                                <div>
+                                    <button class="btn-secondary" style="font-size: 13px; padding: 7px 12px;"
+                                        onclick="viewDriveDetailsModal('Zomato', 'Backend Systems Engineer', '15.0 LPA', 'Gurgaon', 'All Branches >= 7.0 CGPA (Max 1 Backlog)', '3 Rounds: Online Machine Coding, System Design, Founders HR')">View
+                                        Details</button>
+                                    <button class="btn-opt-in"
+                                        onclick="openOptInModal('Zomato', 'Backend Systems Engineer', '15.0 LPA')">Opt-In
+                                        (Apply)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 6: Qualcomm (Ineligible - Restricted) -->
+                        <div class="drive-card not-eligible" data-category="restricted"
+                            data-search="qualcomm hardware firmware engineer bangalore ece">
+                            <div>
+                                <div class="drive-top">
+                                    <div>
+                                        <div class="drive-company">Qualcomm</div>
+                                        <div class="drive-role">Hardware & Firmware Engineer</div>
+                                    </div>
+                                    <div class="drive-package" style="color: #6a715f;">16.0 LPA</div>
+                                </div>
+                                <p class="drive-desc">VLSI chip verification, digital logic synthesis, Verilog
+                                    prototyping, and low-level cellular modem firmware.</p>
+                                <div class="drive-details-row">
+                                    <span>📍 Bangalore</span>
+                                    <span class="status-badge badge-ineligible">Restricted to ECE Department</span>
+                                </div>
+                            </div>
+                            <div class="drive-footer">
+                                <span style="font-size: 13px; color: #8f4520; font-weight: 600;">Not Eligible for CSE
+                                    Stream</span>
+                                <button class="btn-secondary" disabled style="opacity: 0.6; cursor: not-allowed;">Branch
+                                    Restricted</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ================= VIEW 3: COMPLETED DRIVES TILL NOW ================= -->
+                <section id="s-applications" class="view-section">
+
+                    <div class="controls-bar">
+                        <div>
+                            <h2 class="section-title">Completed Drives Till Now</h2>
+                            <p class="section-subtitle">Chronological record of completed recruitment drives, rounds
+                                cleared, and drive outcomes</p>
+                        </div>
+                        <button class="btn-secondary" onclick="exportCompletedDrivesCSV()">Export Completed
+                            Drives</button>
+                    </div>
+
+                    <!-- Summary Metric Badges for Completed Drives -->
+                    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 22px;">
+                        <div
+                            style="background:#ffffff; padding:18px 22px; border-radius:18px; border:1px solid rgba(70, 82, 58, 0.16); box-shadow:0 3px 10px rgba(20, 35, 15, 0.03);">
+                            <div
+                                style="font-size:12px; color:var(--ink-soft); font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">
+                                TOTAL DRIVES COMPLETED</div>
+                            <div style="font-size:24px; font-weight:800; color:var(--ink); margin-top:4px;">5 Drives
+                            </div>
+                            <div style="font-size:13px; color:var(--ink-soft); margin-top:2px;">Season 2025–2026 to date
+                            </div>
+                        </div>
+
+                        <div
+                            style="background:#ffffff; padding:18px 22px; border-radius:18px; border:1px solid rgba(70, 82, 58, 0.16); box-shadow:0 3px 10px rgba(20, 35, 15, 0.03);">
+                            <div
+                                style="font-size:12px; color:var(--ink-soft); font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">
+                                SELECTIONS & OFFERS</div>
+                            <div style="font-size:24px; font-weight:800; color:#216d33; margin-top:4px;">4 Cleared /
+                                Selected</div>
+                            <div style="font-size:13px; color:#216d33; font-weight:700; margin-top:2px;">80% Selection
+                                Clearance Rate</div>
+                        </div>
+
+                        <div
+                            style="background:#ffffff; padding:18px 22px; border-radius:18px; border:1px solid rgba(70, 82, 58, 0.16); box-shadow:0 3px 10px rgba(20, 35, 15, 0.03);">
+                            <div
+                                style="font-size:12px; color:var(--ink-soft); font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">
+                                ROUNDS CLEARED</div>
+                            <div style="font-size:24px; font-weight:800; color:var(--ink); margin-top:4px;">11 Rounds
+                            </div>
+                            <div style="font-size:13px; color:var(--ink-soft); margin-top:2px;">Online assessments &
+                                technical interviews</div>
+                        </div>
+                    </div>
+
+                    <table class="table-container" id="completedDrivesTable">
+                        <thead>
+                            <tr>
+                                <th>Company & Role</th>
+                                <th>Drive Date</th>
+                                <th>Package (CTC)</th>
+                                <th>Rounds Cleared</th>
+                                <th>Drive Outcome</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Drive 1: Microsoft India -->
+                            <tr>
+                                <td>
+                                    <strong>Microsoft India</strong>
+                                    <div style="font-size: 13px; color: var(--ink-soft);">Cloud Support Engineer •
+                                        Hyderabad</div>
+                                </td>
+                                <td>Oct 15, 2026</td>
+                                <td><strong style="color: #216d33;">18.5 LPA</strong></td>
+                                <td><span style="font-weight: 700; color: var(--ink);">3 / 3 Cleared</span> <span
+                                        style="font-size: 12.5px; color: var(--ink-soft);">(Coding, Tech, HR)</span>
+                                </td>
+                                <td><span class="status-badge badge-selected">Offer Extended 🎉</span></td>
+                                <td>
+                                    <a class="action-link"
+                                        onclick="viewCompletedDriveDetails('Microsoft India', 'Cloud Support Engineer', 'Oct 15, 2026', '18.5 LPA', '3 of 3 Cleared (Online Test, Technical Review, HR Interview)', 'Offer Extended', 'Institutional offer letter issued. CTC: 18.5 LPA. Joining July 2026.')">View
+                                        Result</a>
+                                </td>
+                            </tr>
+
+                            <!-- Drive 2: TCS Digital -->
+                            <tr>
+                                <td>
+                                    <strong>TCS Digital</strong>
+                                    <div style="font-size: 13px; color: var(--ink-soft);">Systems Engineer • Chennai
+                                    </div>
+                                </td>
+                                <td>Oct 10, 2026</td>
+                                <td><strong style="color: #216d33;">7.5 LPA</strong></td>
+                                <td><span style="font-weight: 700; color: var(--ink);">2 / 2 Cleared</span> <span
+                                        style="font-size: 12.5px; color: var(--ink-soft);">(NQT, Technical
+                                        Assessment)</span></td>
+                                <td><span class="status-badge badge-eligible"
+                                        style="background: #e5f6e8; color: #156d25;">Completed • Cleared</span></td>
+                                <td>
+                                    <a class="action-link"
+                                        onclick="viewCompletedDriveDetails('TCS Digital', 'Systems Engineer', 'Oct 10, 2026', '7.5 LPA', '2 of 2 Cleared (National Qualifier Test, Advanced Technical Assessment)', 'Completed • Cleared', 'Assessment completed with distinction score. Final selection confirmed.')">View
+                                        Result</a>
+                                </td>
+                            </tr>
+
+                            <!-- Drive 3: Cognizant GenC Next -->
+                            <tr>
+                                <td>
+                                    <strong>Cognizant GenC Next</strong>
+                                    <div style="font-size: 13px; color: var(--ink-soft);">Advanced Software Engineer •
+                                        Bangalore</div>
+                                </td>
+                                <td>Sep 28, 2026</td>
+                                <td><strong style="color: #216d33;">6.75 LPA</strong></td>
+                                <td><span style="font-weight: 700; color: var(--ink);">2 / 2 Cleared</span> <span
+                                        style="font-size: 12.5px; color: var(--ink-soft);">(Skill Assessment, Technical
+                                        Evaluation)</span></td>
+                                <td><span class="status-badge badge-eligible"
+                                        style="background: #e5f6e8; color: #156d25;">Completed • Cleared</span></td>
+                                <td>
+                                    <a class="action-link"
+                                        onclick="viewCompletedDriveDetails('Cognizant GenC Next', 'Advanced Software Engineer', 'Sep 28, 2026', '6.75 LPA', '2 of 2 Cleared (Skill Assessment, Technical Evaluation)', 'Completed • Cleared', 'Full round clearance recorded. Institutional eligibility maintained.')">View
+                                        Result</a>
+                                </td>
+                            </tr>
+
+                            <!-- Drive 4: Infosys SP -->
+                            <tr>
+                                <td>
+                                    <strong>Infosys SP (Specialist Programmer)</strong>
+                                    <div style="font-size: 13px; color: var(--ink-soft);">Specialist Programmer •
+                                        Bangalore</div>
+                                </td>
+                                <td>Sep 18, 2026</td>
+                                <td><strong style="color: #216d33;">9.5 LPA</strong></td>
+                                <td><span style="font-weight: 700; color: var(--ink);">2 / 3 Completed</span> <span
+                                        style="font-size: 12.5px; color: var(--ink-soft);">(HackWithInfy Cleared, Tech 1
+                                        Cleared)</span></td>
+                                <td><span class="status-badge badge-shortlisted"
+                                        style="background: #fef3d6; color: #8e6815;">Completed • Results Declared</span>
+                                </td>
+                                <td>
+                                    <a class="action-link"
+                                        onclick="viewCompletedDriveDetails('Infosys SP', 'Specialist Programmer', 'Sep 18, 2026', '9.5 LPA', '2 of 3 Completed (HackWithInfy Cleared, Tech 1 Cleared, Tech 2 Finalist)', 'Completed • Results Declared', 'Completed till final technical evaluation panel. Final merit list finalized.')">View
+                                        Result</a>
+                                </td>
+                            </tr>
+
+                            <!-- Drive 5: Wipro Turbo -->
+                            <tr>
+                                <td>
+                                    <strong>Wipro Turbo</strong>
+                                    <div style="font-size: 13px; color: var(--ink-soft);">Project Engineer • Hyderabad
+                                    </div>
+                                </td>
+                                <td>Sep 05, 2026</td>
+                                <td><strong style="color: #216d33;">6.5 LPA</strong></td>
+                                <td><span style="font-weight: 700; color: var(--ink);">2 / 2 Cleared</span> <span
+                                        style="font-size: 12.5px; color: var(--ink-soft);">(Elite National Hunt,
+                                        Technical Round)</span></td>
+                                <td><span class="status-badge badge-eligible"
+                                        style="background: #e5f6e8; color: #156d25;">Completed • Cleared</span></td>
+                                <td>
+                                    <a class="action-link"
+                                        onclick="viewCompletedDriveDetails('Wipro Turbo', 'Project Engineer', 'Sep 05, 2026', '6.5 LPA', '2 of 2 Cleared (Elite National Hunt, Technical Round)', 'Completed • Cleared', 'Drive concluded successfully. Student satisfied all benchmark criteria.')">View
+                                        Result</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </section>
+
+                <!-- ================= VIEW 4: MY PROFILE & ACADEMIC DATA ================= -->
+                <section id="s-profile" class="view-section">
+
+                    <div class="controls-bar">
+                        <div>
+                            <h2 class="section-title">Academic & Placement Profile</h2>
+                            <p class="section-subtitle">Official verified records registered with the college placement
+                                cell</p>
+                        </div>
+                        <button class="btn-secondary" onclick="openCorrectionModal()">⚠️ Request Correction</button>
+                    </div>
+
+                    <!-- Academic Record Badges -->
+                    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 24px;">
+                        <div
+                            style="background:#ffffff; padding:22px; border-radius:20px; border:1px solid rgba(70, 82, 58, 0.16); box-shadow:0 4px 12px rgba(20, 35, 15, 0.03);">
+                            <div
+                                style="font-size:12.5px; color:var(--ink-soft); font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">
+                                COLLEGE ROLL NUMBER</div>
+                            <div style="font-size:22px; font-weight:800; color:var(--ink); margin-top:6px;">21CS102
+                            </div>
+                            <div style="font-size:13px; color:var(--ink-soft); margin-top:2px;">B.Tech Computer Science
+                                &bull; Final Year</div>
+                        </div>
+
+                        <div
+                            style="background:#ffffff; padding:22px; border-radius:20px; border:1px solid rgba(70, 82, 58, 0.16); box-shadow:0 4px 12px rgba(20, 35, 15, 0.03);">
+                            <div
+                                style="font-size:12.5px; color:var(--ink-soft); font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">
+                                VERIFIED CGPA</div>
+                            <div style="font-size:22px; font-weight:800; color:var(--ink); margin-top:6px;">8.92 <span
+                                    style="font-size:15px; font-weight:600; color:var(--ink-soft);">/ 10.0</span></div>
+                            <div style="font-size:13px; color:#216d33; font-weight:700; margin-top:2px;">Staff Verified
+                                &bull; First Class with Distinction</div>
+                        </div>
+
+                        <div
+                            style="background:#ffffff; padding:22px; border-radius:20px; border:1px solid rgba(70, 82, 58, 0.16); box-shadow:0 4px 12px rgba(20, 35, 15, 0.03);">
+                            <div
+                                style="font-size:12.5px; color:var(--ink-soft); font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">
+                                ACTIVE BACKLOGS</div>
+                            <div style="font-size:22px; font-weight:800; color:#216d33; margin-top:6px;">0 Backlogs
+                            </div>
+                            <div style="font-size:13px; color:var(--ink-soft); margin-top:2px;">All Semester Clearances
+                                Verified</div>
+                        </div>
+                    </div>
+
+                    <!-- Academic Marks Breakdown -->
+                    <div
+                        style="background:#ffffff; border:1px solid rgba(70, 82, 58, 0.16); border-radius:22px; padding:24px; margin-bottom: 24px;">
+                        <h3 style="font-size:17px; font-weight:800; color:var(--ink); margin-bottom:16px;">Prior
+                            Academic Records & Mentorship</h3>
+                        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+                            <div>
+                                <div style="font-size:12px; color:var(--ink-soft); font-weight:700;">10th Standard Score
+                                </div>
+                                <div style="font-size:16px; font-weight:800; color:var(--ink); margin-top:3px;">92.4%
+                                    (CBSE)</div>
+                            </div>
+                            <div>
+                                <div style="font-size:12px; color:var(--ink-soft); font-weight:700;">12th Standard Score
+                                </div>
+                                <div style="font-size:16px; font-weight:800; color:var(--ink); margin-top:3px;">89.6%
+                                    (State Board)</div>
+                            </div>
+                            <div>
+                                <div style="font-size:12px; color:var(--ink-soft); font-weight:700;">Department
+                                    Coordinator</div>
+                                <div style="font-size:16px; font-weight:800; color:var(--ink); margin-top:3px;">Dr. R.
+                                    Ramanathan</div>
+                            </div>
+                            <div>
+                                <div style="font-size:12px; color:var(--ink-soft); font-weight:700;">Placement Status
+                                </div>
+                                <div style="font-size:16px; font-weight:800; color:#216d33; margin-top:3px;">Placed (1
+                                    Offer)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resume Management -->
+                    <div
+                        style="background:#ffffff; border:1px solid rgba(70, 82, 58, 0.16); border-radius:22px; padding:24px;">
+                        <div
+                            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                            <div>
+                                <div style="font-size:18px; font-weight:800; color:var(--ink);">Placement Resume Version
+                                </div>
+                                <p style="font-size:13.5px; color:var(--ink-soft); margin-top:3px;">Active File: <strong
+                                        id="currentResumeName">Aditya_Resume_2026.pdf</strong> (Uploaded 3 days ago
+                                    &bull; Verified)</p>
+                            </div>
+                            <div style="display:flex; gap:10px;">
+                                <button class="btn-secondary" onclick="previewResumeModal()">Preview PDF</button>
+                                <button class="btn-primary" onclick="openResumeUploadModal()">+ Upload New
+                                    Version</button>
+                            </div>
+                        </div>
+                        <p style="font-size:13px; color:var(--ink-soft); line-height:1.5;">
+                            This resume is automatically submitted when you opt in to campus recruitment drives. Allowed
+                            formats: PDF up to 2MB. Ensure contact details and technical projects are up to date.
+                        </p>
+                    </div>
+
+                </section>
+
+                <!-- ================= VIEW 5: OFFERS & POLICY ================= -->
+                <section id="s-offers" class="view-section">
+
+                    <div class="controls-bar">
+                        <div>
+                            <h2 class="section-title">Received Placement Offers & College Policy</h2>
+                            <p class="section-subtitle">Manage institutional offer acceptances and review policy
+                                guidelines</p>
+                        </div>
+                    </div>
+
+                    <!-- Official Offer Box -->
+                    <div style="background:#ffffff; border:1.5px solid rgba(70, 82, 58, 0.18); border-radius:24px; padding:28px; max-width:680px; box-shadow:0 8px 24px rgba(20, 35, 15, 0.05); margin-bottom: 24px;"
+                        id="offerBox">
+                        <div
+                            style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
+                            <div>
+                                <span class="status-badge badge-selected" style="margin-bottom:8px;"
+                                    id="offerBadge">Offer Extended</span>
+                                <div style="font-size:24px; font-weight:800; color:var(--ink);">Microsoft India</div>
+                                <div style="font-size:15px; font-weight:600; color:var(--ink-soft); margin-top:2px;">
+                                    Cloud Support Engineer &bull; Azure Infrastructure</div>
+                            </div>
+                            <div style="font-size:26px; font-weight:800; color:#216d33;">18.5 LPA</div>
+                        </div>
+
+                        <div
+                            style="background:#f7f9f2; border:1px solid rgba(70, 82, 58, 0.12); border-radius:16px; padding:16px; margin-bottom:20px; font-size:14px; line-height:1.6; color:var(--ink);">
+                            <div><strong>Expected Joining:</strong> July 2026</div>
+                            <div><strong>Job Location:</strong> Hyderabad Campus (Hybrid)</div>
+                            <div><strong>Decision Window:</strong> Open until <strong>Nov 10, 2026</strong> (5:00 PM
+                                IST)</div>
+                        </div>
+
+                        <div style="display:flex; gap:12px;" id="offerActionButtons">
+                            <button class="btn-primary" style="background:#216d33;"
+                                onclick="acceptOffer('Microsoft India', '18.5 LPA')">✓ Accept Offer</button>
+                            <button class="btn-secondary"
+                                onclick="openOfferLetterModal('Aditya Kumar', 'Microsoft India', '18.5 LPA', 'Cloud Support Engineer')">View
+                                Official Letter</button>
+                            <button class="btn-opt-out" onclick="declineOffer('Microsoft India')">Decline</button>
+                        </div>
+                    </div>
+
+                    <!-- College Placement Policy Rules Box -->
+                    <div
+                        style="background:rgba(95, 128, 82, 0.09); border:1.5px solid rgba(70, 82, 58, 0.16); border-radius:22px; padding:24px; max-width:680px;">
+                        <h3 style="font-size:16px; font-weight:800; color:var(--ink); margin-bottom:10px;">Institutional
+                            Placement Policy Rules:</h3>
+                        <ul style="font-size:14px; color:var(--ink-soft); line-height:1.6; padding-left:20px;">
+                            <li><strong>Maximum Offers:</strong> Each student is eligible to accept a maximum of 2
+                                placement offers during their academic season.</li>
+                            <li><strong>Subsequent Drive Eligibility:</strong> A student who has secured an offer &ge;
+                                10.0 LPA remains eligible for higher-tier recruitment opportunities in accordance with
+                                department policy.</li>
+                            <li><strong>Acceptance Locking:</strong> Upon formal acceptance of 2 offers, the student
+                                profile will automatically transition to "Placement Closure" status.</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+            </div>
+        </main>
+
+    </div>
+
+    <!-- ================= MODALS ================= -->
+
+    <!-- Modal 1: Opt-In Confirmation -->
+    <div id="optInModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirm Drive Opt-in</h3>
+                <button class="modal-close" onclick="closeModal('optInModal')">&times;</button>
+            </div>
+            <div style="font-size: 14.5px; line-height: 1.6; color: var(--ink); margin-bottom: 20px;">
+                <p>You are opting in to the recruitment drive for <strong id="optin-company">Company</strong>.</p>
+                <p style="margin-top: 8px;">Your verified credentials will be shared with the recruiter:</p>
+                <ul style="margin: 10px 0 10px 22px; color: var(--ink-soft);">
+                    <li>Verified CGPA: <strong>8.92</strong> (0 Backlogs)</li>
+                    <li>Department: <strong>Computer Science & Engineering</strong></li>
+                    <li>Active Resume: <strong>Aditya_Resume_2026.pdf</strong></li>
+                </ul>
+                <p style="font-size: 13px; color: var(--ink-soft);">Once opted in, attendance for scheduled rounds is
+                    mandatory per college placement rules.</p>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 12px;">
+                <button class="btn-secondary" onclick="closeModal('optInModal')">Cancel</button>
+                <button class="btn-primary" onclick="confirmOptIn()">Confirm & Opt-In</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Opt-Out with Reason -->
+    <div id="optOutModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Opt-Out from Drive</h3>
+                <button class="modal-close" onclick="closeModal('optOutModal')">&times;</button>
+            </div>
+            <form onsubmit="event.preventDefault(); confirmOptOut();">
+                <input type="hidden" id="optout-company">
+                <div style="font-size: 14px; color: var(--ink-soft); margin-bottom: 14px;">
+                    Please state your reason for opting out of <strong id="optout-company-name">Company</strong>:
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Opt-Out Reason Category *</label>
+                    <select id="optout-reason-select" class="form-select" required>
+                        <option value="Higher Studies (GATE / GRE / MBA)">Preparing for Higher Studies (GATE / GRE /
+                            MBA)</option>
+                        <option value="Already Secured Target Placement">Already Secured Target Placement</option>
+                        <option value="Location / Shift Preference Constraint">Location / Shift Preference Constraint
+                        </option>
+                        <option value="Domain / Tech Stack Mismatch">Domain / Tech Stack Mismatch</option>
+                        <option value="Personal Reasons">Personal / Family Reasons</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Additional Comments (Optional)</label>
+                    <textarea id="optout-comment" class="form-textarea" rows="2"
+                        placeholder="Brief note for your department coordinator..."></textarea>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 18px;">
+                    <button type="button" class="btn-secondary" onclick="closeModal('optOutModal')">Keep
+                        Application</button>
+                    <button type="submit" class="btn-opt-out">Confirm Opt-Out</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 3: Drive Details -->
+    <div id="driveDetailsModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title" id="dtl-company">Company Details</h3>
+                    <p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 2px;" id="dtl-role">Role
+                        Designation</p>
+                </div>
+                <button class="modal-close" onclick="closeModal('driveDetailsModal')">&times;</button>
+            </div>
+            <div style="font-size: 14px; line-height: 1.6; color: var(--ink); margin-bottom: 20px;">
+                <div
+                    style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(70, 82, 58, 0.1);">
+                    <span style="color: var(--ink-soft);">Offered Package (CTC):</span>
+                    <strong id="dtl-ctc" style="color: #216d33; font-size: 16px;">--</strong>
+                </div>
+                <div
+                    style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(70, 82, 58, 0.1);">
+                    <span style="color: var(--ink-soft);">Job Location:</span>
+                    <strong id="dtl-location">--</strong>
+                </div>
+                <div
+                    style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(70, 82, 58, 0.1);">
+                    <span style="color: var(--ink-soft);">Eligibility Criteria:</span>
+                    <strong id="dtl-eligibility">--</strong>
+                </div>
+                <div style="padding: 12px 0;">
+                    <div style="font-weight: 800; margin-bottom: 4px;">Recruitment Rounds & Format:</div>
+                    <div id="dtl-rounds" style="color: var(--ink-soft);">--</div>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end;">
+                <button class="btn-secondary" onclick="closeModal('driveDetailsModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4: Meeting Schedule / Link -->
+    <div id="meetingModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Interview Round Schedule</h3>
+                <button class="modal-close" onclick="closeModal('meetingModal')">&times;</button>
+            </div>
+            <div style="font-size: 14.5px; line-height: 1.6; color: var(--ink); margin-bottom: 20px;">
+                <p><strong>Company:</strong> <span id="meet-company">Google India</span></p>
+                <p><strong>Round:</strong> <span id="meet-round">Technical Interview 2</span></p>
+                <p><strong>Scheduled Time:</strong> <span id="meet-time">Tomorrow, 10:00 AM IST</span></p>
+                <p style="margin-top: 14px;"><strong>Video Conference URL:</strong></p>
+                <div style="background: #f4f8ee; border: 1.5px solid r

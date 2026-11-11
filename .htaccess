@@ -1,0 +1,25 @@
+Options -Indexes
+DirectoryIndex login.php
+RewriteEngine On
+
+# Block direct browser access to application internals and database scripts.
+RewriteRule ^(?:config|includes|database)(?:/|$) - [F,L,NC]
+RewriteRule \.(?:sql|md|log|ini|env)$ - [F,L,NC]
+
+# Keep login and logout public. Login is the only public customer entry page.
+RewriteRule ^logout\.php$ - [L,NC]
+RewriteRule ^customer-login-router\.php$ - [L,NC]
+RewriteRule ^login\.php$ customer-login-router.php [QSA,L,NC]
+RewriteRule ^contact-submit\.php$ - [L,NC]
+RewriteRule ^google-(?:login|callback)\.php$ - [L,NC]
+RewriteRule ^forgot-password\.php$ - [L,NC]
+RewriteRule ^login\.html$ login.php [R=302,L,NC]
+
+# Router files are internal entry points and must not rewrite to themselves.
+RewriteRule ^(?:customer-auth-router|legacy-page)\.php$ - [L,NC]
+
+# Every other customer PHP endpoint is authenticated before its code executes.
+RewriteRule ^(.+\.php)$ customer-auth-router.php?script=$1 [QSA,L,NC]
+
+# Legacy static HTML pages are also checked server-side before they are served.
+RewriteRule ^(.+\.html)$ legacy-page.php?file=$1 [QSA,L,NC]
